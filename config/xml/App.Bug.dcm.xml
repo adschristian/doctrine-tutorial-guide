@@ -1,11 +1,11 @@
 <doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="App\Bug" table="bugs">
+    <entity name="App\Bug" table="bugs" repository-class="App\Infra\Repository\BugRepository">
         <id name="id" type="integer">
             <generator strategy="AUTO" />
         </id>
 
-        <field name="status" type="string" />
+        <field name="status" type="string" enumType="App\Enums\BugStatusEnum" />
         <field name="description" type="string" nullable="true" />
         <field name="createdAt" type="datetime" column="created_at" nullable="true" />
 

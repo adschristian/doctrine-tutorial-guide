@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Enums\BugStatusEnum;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -11,13 +12,16 @@ use Doctrine\Common\Collections\Collection;
 
 final class Bug
 {
+    public const OPEN = 'open';
+    public const CLOSED = 'closed';
+
     private ?int $id;
     private Collection $products;
     private User $engineer;
     private User $reporter;
 
     public function __construct(
-        private string $status,
+        private string $status = self::OPEN,
         private ?string $description = null,
         private ?DateTimeInterface $createdAt = new DateTimeImmutable(),
     ) {
@@ -38,6 +42,11 @@ final class Bug
     public function status(): string
     {
         return $this->status;
+    }
+
+    public function close(): void
+    {
+        $this->status = self::CLOSED;
     }
 
     public function id(): ?int
