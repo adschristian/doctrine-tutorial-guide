@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Database\Doctrine;
+namespace App\Infra\Database\Doctrine;
 
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
